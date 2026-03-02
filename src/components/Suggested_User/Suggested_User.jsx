@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom';
 import { supabase } from "../../../supabase"
-import './Suggested_User.css'
+import './Suggested_USer.css'
 
 function Suggested_User({currentUser}) {
     const navigate = useNavigate()
