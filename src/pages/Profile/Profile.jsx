@@ -23,8 +23,8 @@ function Profile() {
             setCurrentUser(data.user)
         }
         getUser()
+        
     }, [])
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true)
@@ -44,39 +44,30 @@ function Profile() {
     }, [profileId])
 
     const handleFollow = async () => {
-  try {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (!user) return alert("Debes iniciar sesión");
+    try {
+        if (!currentUser) return alert("Debes iniciar sesión");
 
-    if (profileData.isFollowing) {
-      const { error } = await supabase
-        .from('follows')
-        .delete()
-        .match({ follower_id: user.id, following_id: id });
+        if (profileData.isFollowing) {
+            const { error } = await supabase
+                .from('follows')
+                .delete()
+                .match({ follower_id: currentUser.id, following_id: profileId });
 
-      if (error) throw error;
+            if (error) throw error;
 
-      setProfileData(prev => ({
-        ...prev,
-        isFollowing: false,
-        followersCount: prev.followersCount - 1
-      }));
-    } else {
-      const { error } = await supabase
-        .from('follows')
-        .insert([{ follower_id: user.id, following_id: id }]);
+            setProfileData(prev => ({ ...prev, isFollowing: false }));
+        } else {
+            const { error } = await supabase
+                .from('follows')
+                .insert([{ follower_id: currentUser.id, following_id: profileId }]);
 
-      if (error) throw error;
+            if (error) throw error;
 
-      setProfileData(prev => ({
-        ...prev,
-        isFollowing: true,
-        followersCount: prev.followersCount + 1
-      }));
+            setProfileData(prev => ({ ...prev, isFollowing: true }));
+        }
+    } catch (error) {
+        console.error("Error al procesar el follow:", error.message);
     }
-  } catch (error) {
-    console.error("Error al procesar el follow:", error.message);
-  }
 };
 
     const handleDeletePost = async (postId) => {
@@ -101,7 +92,6 @@ function Profile() {
     const { count: countFollowings } = useCounter('follows', 'follower_id', profileId)
 
     if (!profileData) return <div className='loading'>Cargando...</div>
-
     return (
         <div className='profile-page'>
             <div className='profile-header-nav'>
@@ -120,7 +110,11 @@ function Profile() {
                     {isOwnProfile ? (
                         <button onClick={() => navigate(`/profile/${profileId}/edit`)} className="edit-profile-btn">Editar perfil</button>
                     ) : (
-                        <button onClick={handleFollow} className={`follow-btn ${profileData.isFollowing ? 'following' : ''}`}>{followed ? 'Siguiendo' : 'Seguir'}</button>
+                        <button 
+                            onClick={handleFollow} 
+                            className={`follow-btn ${profileData.isFollowing ? 'following' : ''}`}>
+                            {profileData.isFollowing ? 'Siguiendo' : 'Seguir'}
+                        </button>
                     )}
                 </div>
 
