@@ -3,7 +3,7 @@ import Btn1, { Text1 } from '../../components/Btn1/Btn1'
 import Divider from '../../components/Divider/Divider'
 import { NavLink, useNavigate } from 'react-router-dom';
 import Create_Account from '../../components/Create_Account/Create_Account';
-import Login_Google from '../../components/login_Google/login_Google';
+import Login_Google from '../../components/Login_Google/Login_Google';
 import Logo from '../../components/Logo/Logo';
 import '../../App.css'
 
