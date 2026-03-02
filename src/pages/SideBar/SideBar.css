@@ -10,14 +10,12 @@
 }
 
 .sidebar-logo {
-  padding: 12px;
-  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 32px; 
-  height: 32px;
+  width: 60px; 
+  height: 60px;
   border-radius: 100%;
   flex-shrink: 0;
   transition: background 0.2s;
@@ -71,6 +69,8 @@
   background-color: var(--primary);
   color: white;
   border: none;
+  display: flex;
+  align-items: center;
   height: 55px;
   width: 90%;
   min-width: fit-content;
@@ -95,8 +95,8 @@
     justify-content: center;
   }
   .sidebar-logo {
-    width: 28px;
-    height: 28px;
+    width: 30px;
+    height: 30px;
   }
   .logout-button {
     width: 50px;
