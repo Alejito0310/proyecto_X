@@ -1,7 +1,7 @@
 import React from 'react';
 import Likes from '../../../components/Likes/Likes';
 import Comments from '../../../components/Comments/Comments';
-import Counter from '../../../counter/counter';
+import Counter from '../../../Counter/Counter';
 import PostContent from './PostContent';
 import './Posts.css'
 
