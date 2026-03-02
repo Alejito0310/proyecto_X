@@ -65,8 +65,8 @@ body {
   padding: 0 20px;
 }
 .sign-up_text1 {
-  font-size: 3rem;
-  margin-bottom: 30px;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 .sign-up_buttons {
   display: flex;
@@ -76,7 +76,7 @@ body {
   margin-top: 5%;
 }
 .sign-up_text2 {
-  font-size: 3rem;
+  font-size: 1.5rem;
   color: var(--text);
 }
 
