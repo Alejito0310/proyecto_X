@@ -80,7 +80,7 @@ function Profile() {
 
             <div className='profile-info-section'>
                 <div className='profile-top-row'>
-                    <img className='profile-avatar-large' src={profileData.avatar_url || "../../../img/imagen_npc.jpg"} alt="avatar" />
+                    <img className='profile-avatar-large' src={profileData.avatar_url || "/imagen_npc.jpg"} alt="avatar" />
                     {isOwnProfile ? (
                         <button onClick={() => navigate(`/profile/${profileId}/edit`)} className="edit-profile-btn">Editar perfil</button>
                     ) : (

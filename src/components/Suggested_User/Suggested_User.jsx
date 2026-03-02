@@ -59,7 +59,7 @@ function Suggested_User({currentUser}) {
         <div className='suggested-item' key={user.id} onClick={() => navigate(`/profile/${user.id}`)}>
           
           <img 
-            src={user.avatar_url || "../../../img/imagen_npc.jpg"} 
+            src={user.avatar_url || "/imagen_npc.jpg"} 
             className="suggested-avatar" 
             alt={user.username} 
           />

@@ -16,7 +16,7 @@ const formatDate = (dateString) => {
 }
   return (
     <div className='feed'>
-        <img className='userPhoto' src= {post.profiles?.avatar_url || "../../../img/imagen_npc.jpg"} alt="" />
+        <img className='userPhoto' src= {post.profiles?.avatar_url || "/imagen_npc.jpg"} alt="" />
 
         <div className='feed-content'>
             <div className='header'>

@@ -84,7 +84,6 @@ Comment
       </div>
 
       {Open && (
-        //añadir boton eliminar comentario propio y likes
         <div onClick={() => setOpen(false)} className='pop_up'>
           <div className='pop_upContent' onClick={(e) => e.stopPropagation()}>
             <button onClick={() => setOpen(false)}>

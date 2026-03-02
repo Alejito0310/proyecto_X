@@ -20,7 +20,7 @@ function Login_Google() {
   return (
     <>
         <Btn1 variant='google' onClick={handleGoogleLogin}>
-          <Text1 img="../../img/google.png" text1="Sign in with Google"/>
+          <Text1 img="/google.png" text1="Sign in with Google"/>
         </Btn1>
     </>
   )

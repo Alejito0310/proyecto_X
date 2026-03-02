@@ -13,7 +13,7 @@ function Sign_up() {
   const btnList = [
     {
       id: 1,
-      img: "../../img/google.png",
+      img: "/google.png",
       text1: "Sign up with Google",
       NavLink: () => Nav("/analyze"),
     }

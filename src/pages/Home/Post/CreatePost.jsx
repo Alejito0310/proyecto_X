@@ -76,7 +76,7 @@ function CreatePost({ onPostSuccess }) {
     <div className='create-post-container'>
         <div className="create-post-left">
             <img 
-                src={profileAvatar || "../../../../img/imagen_npc.jpg"} 
+                src={profileAvatar || "/imagen_npc.jpg"} 
                 alt="Perfil" 
                 className="create-post-avatar" 
             />
