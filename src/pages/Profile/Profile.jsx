@@ -43,6 +43,42 @@ function Profile() {
         fetchData()
     }, [profileId])
 
+    const handleFollow = async () => {
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) return alert("Debes iniciar sesión");
+
+    if (profileData.isFollowing) {
+      const { error } = await supabase
+        .from('follows')
+        .delete()
+        .match({ follower_id: user.id, following_id: id });
+
+      if (error) throw error;
+
+      setProfileData(prev => ({
+        ...prev,
+        isFollowing: false,
+        followersCount: prev.followersCount - 1
+      }));
+    } else {
+      const { error } = await supabase
+        .from('follows')
+        .insert([{ follower_id: user.id, following_id: id }]);
+
+      if (error) throw error;
+
+      setProfileData(prev => ({
+        ...prev,
+        isFollowing: true,
+        followersCount: prev.followersCount + 1
+      }));
+    }
+  } catch (error) {
+    console.error("Error al procesar el follow:", error.message);
+  }
+};
+
     const handleDeletePost = async (postId) => {
         const confirmDelete = window.confirm("¿Estás seguro de que quieres eliminar este post?");
         if (!confirmDelete) return;
@@ -84,7 +120,7 @@ function Profile() {
                     {isOwnProfile ? (
                         <button onClick={() => navigate(`/profile/${profileId}/edit`)} className="edit-profile-btn">Editar perfil</button>
                     ) : (
-                        <button className="follow-btn">{followed ? 'Siguiendo' : 'Seguir'}</button>
+                        <button onClick={handleFollow} className={`follow-btn ${profileData.isFollowing ? 'following' : ''}`}>{followed ? 'Siguiendo' : 'Seguir'}</button>
                     )}
                 </div>
 
