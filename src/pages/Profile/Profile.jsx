@@ -27,34 +27,59 @@ function Profile() {
     }, [])
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true)
-            const { data: pData } = await supabase.from('profiles').select('*').eq('id', profileId).maybeSingle()
-            if (pData) setProfileData(pData)
+        if (!profileId) return;
+        setLoading(true);
 
-            const { data: pPosts } = await supabase
-                .from('posts')
-                .select('*, profiles(username, avatar_url)')
-                .eq('user_id', profileId)
-                .order('created_at', { ascending: false })
-            
-            if (pPosts) setPosts(pPosts)
-            setLoading(false)
+        const { data: pData } = await supabase
+            .from('profiles')
+            .select('*')
+            .eq('id', profileId)
+            .maybeSingle();
+
+        if (pData) {
+            let isFollowingAccion = false;
+            if (currentUser) {
+                const { data: followCheck } = await supabase
+                    .from('follows')
+                    .select('*')
+                    .match({ follower_id: currentUser.id, following_id: profileId })
+                    .maybeSingle();
+                
+                if (followCheck) isFollowingAccion = true;
+            }
+
+            setProfileData({
+                ...pData,
+                isFollowing: isFollowingAccion
+            });
         }
-        fetchData()
-    }, [profileId])
+
+        const { data: pPosts } = await supabase
+            .from('posts')
+            .select('*, profiles(username, avatar_url)')
+            .eq('user_id', profileId)
+            .order('created_at', { ascending: false });
+        
+        if (pPosts) setPosts(pPosts);
+        setLoading(false);
+    }
+
+    fetchData();
+}, [profileId, currentUser]);
 
     const handleFollow = async () => {
     try {
         if (!currentUser) return alert("Debes iniciar sesión");
 
-        if (profileData.isFollowing) {
+        const isCurrentlyFollowing = profileData.isFollowing;
+
+        if (isCurrentlyFollowing) {
             const { error } = await supabase
                 .from('follows')
                 .delete()
                 .match({ follower_id: currentUser.id, following_id: profileId });
 
             if (error) throw error;
-
             setProfileData(prev => ({ ...prev, isFollowing: false }));
         } else {
             const { error } = await supabase
@@ -62,11 +87,10 @@ function Profile() {
                 .insert([{ follower_id: currentUser.id, following_id: profileId }]);
 
             if (error) throw error;
-
             setProfileData(prev => ({ ...prev, isFollowing: true }));
         }
     } catch (error) {
-        console.error("Error al procesar el follow:", error.message);
+        console.error("Error en follow/unfollow:", error.message);
     }
 };
 
