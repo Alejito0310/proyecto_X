@@ -55,7 +55,7 @@ body {
   }
 }
 @media (max-width: 700px) {
-  .sidebar-column { width: 80px; }
+  .sidebar-column { width: 100px; }
   .nav-item span { display: none; }
   .feed-column { width: 100%; }
 }
