@@ -1,0 +1,28 @@
+.counter-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.counter-number {
+    font-size: 13px;
+    font-family: sans-serif;
+    line-height: 1; 
+}
+
+.counter-container:hover {
+    color: var(--primary);
+}
+
+.counter-container button {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}

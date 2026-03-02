@@ -1,0 +1,273 @@
+/*PostContent.jsx*/
+.feed {
+  padding: 12px 16px;
+  background-color: var(--bg);
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 12px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.username-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.username-btn strong {
+  color: var(--text);
+  font-size: 20px;
+  font-weight: 700;
+  transition: text-decoration 0.2s;
+}
+.username-btn:hover strong {
+  text-decoration: underline;
+}
+.date {
+  color: var(--text-secondary);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
+.date::before {
+  content: "·";
+  margin-right: 8px;
+  font-weight: bold;
+}
+.feed:hover {
+  background-color: var(--hover);
+}
+
+.feedContent {
+  color: var(--text);
+  font-size: 15px;
+  flex: 1;
+  line-height: 1.5;
+}
+.feedImg{
+  margin-top: 12px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  width: 100%;
+  max-height: 512px;
+  object-fit: cover;
+}
+
+.userPhoto {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  align-self: flex-start;
+}
+
+/*CreatePost.jsx*/
+
+.create-post-container{
+  display: flex;
+  padding: 16px;
+  width: 100%;
+  gap: 12px;
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.create-post-left {
+  display: flex;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  width: 10%;
+  gap: 12px;
+}
+.create-post-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.create-post-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 12px;
+}
+.textarea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.textarea textarea {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  font-family: inherit;
+  resize: none;
+  padding-top: 10px;
+}
+.textarea textarea::placeholder {
+  color: var(--text-secondary);
+}
+.create-post-image{
+  width: 100%;
+  background: transparent;
+  border: 1px solid var(--primary);
+  border-radius: 20px;
+  padding: 8px 15px;
+  color: white;
+  margin: 10px 0;
+  outline: none;
+}
+.show-animation {
+  animation: slideDown 0.2s ease-out;
+}
+.create-post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+
+.icons-group {
+  display: flex;
+  gap: 8px;
+  color: var(--primary);
+}
+
+
+.icons-group span {
+  font-size: 18px;
+  opacity: 0.6;
+  cursor: default;
+  transition: transform 0.2s;
+}
+
+
+.icons-group span:hover {
+  opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.btn1-createPost {
+  background-color: var(--alt-bg);
+  color: var(--alt-text);
+  width: 100px;
+  border: none;
+  height: 40px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+/*PostModal.jsx*/
+.pop_up_posts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(91, 112, 131, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  z-index: 1000;
+}
+.pop_upContent_posts {
+  background-color: var(--bg);
+  width: 600px;
+  max-width: 90vw;
+  min-height: 280px;
+  border-radius: 16px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px;
+  box-shadow: var(--bg-secondary);
+}
+
+/*PostItem.jsx*/
+.postItem-container {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+}
+.post-interactions {
+  display: flex;
+  margin-left: 60px;
+  margin-top: 10px;
+  justify-content: space-between;
+  gap: 60px;
+  padding-bottom: 12px;
+}
+
+.interaction, .interaction > div {
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  font-size: 14px;
+}
+.interaction span, .interaction p {
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+}
+.interaction-wrapped {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.interaction button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.interaction-group:hover {
+  color: var(--primary);
+}
+.delete-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 13px;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.delete-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    color: #ff4444;
+}
