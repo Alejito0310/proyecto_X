@@ -12,7 +12,6 @@ import Home from './pages/Home/Home'
 function App() {
   return (
     <>
-      
     <Routes>
       <Route path='/' element={<PublicRoute><Sign_up/></PublicRoute>} />
       <Route path='/sign_up' element={<PublicRoute><Sign_up/></PublicRoute>} />
@@ -22,9 +21,7 @@ function App() {
       <Route path='/home' element={<ProtectedRoute><Home/></ProtectedRoute>} ></Route>
       <Route path='/profile/:id' element={<ProtectedRoute><Profile/></ProtectedRoute>} ></Route>
       <Route path='/profile/:id/edit' element={<ProtectedRoute><EditProfile/></ProtectedRoute>} ></Route>
-
     </Routes>
-    
     </>
   )
 }
