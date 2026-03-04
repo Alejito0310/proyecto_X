@@ -27,6 +27,7 @@ const formatDate = (dateString) => {
                     </span>
                 </button>
                 <span className='date'>{formatDate(post.created_at)}</span>
+                <span className='exact-time'>{date.toLocaleDateString(post.created_at)}</span>
             </div>
 
             <p className='feedContent'>{post.content}</p>
